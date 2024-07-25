@@ -1,0 +1,80 @@
+<!DOCTYPE html> <!-- Morgan Pickens-->
+<html lang="en"> <!-- 10/14/2021-->
+
+<head>
+  <title>Grocery List Homework</title> <!-- Title of the page -->
+  <style>
+    body {
+      font-size: 24px;
+      line-height: 1.5;
+    }
+
+    h2 {
+      font-size: 36px;
+    }
+
+    textarea {
+      width: 30%;
+      height: 100px;
+      font-size: 24px;
+    }
+
+    button {
+      font-size: 24px;
+      padding: 10px 20px;
+    }
+
+    #listDisplay {
+      font-size: 24px;
+      white-space: pre-wrap;
+    }
+
+    #itemCount {
+      font-size: 24px;
+    }
+  </style>
+</head>
+<!-- The body of the page -->
+
+<body>
+  <h2>Homework Grocery List</h2> <!-- Heading of the page -->
+  Enter Your Grocery Items. <!-- Instructions for the user -->
+  <br>
+  <textarea id="itemsInput" placeholder="Example Milk, Cookies, Orange"></textarea>
+  <br>
+  <button onclick="CreateList()">Create List</button> <!-- Button to create the list -->
+  <p id="listDisplay"></p>
+  <p>Total number of items: <span id="itemCount"></span></p> <!-- Display the total number of items -->
+  <!-- The script to create the list -->
+  <script>
+    function createList() {
+      // Get the raw input from the textarea
+      let rawInput = document.getElementById('itemsInput').value;
+
+      // Check if the input is empty
+      if (rawInput.trim() === "") {
+        alert("You must enter some grocery items!");
+        return;
+      }
+
+      //  Split the raw input into an array of items
+      let itemList = rawInput.split(',');
+
+      //Trim the whitespace from each item in the array
+      for (let i = 0; i < itemList.length; i++) {
+        itemList[i] = itemList[i].trim();
+      }
+
+      // Sort the items in the list
+      itemList.sort();
+
+      // Display the list of items
+      document.getElementById('listDisplay').innerHTML = "<pre>" + itemList.join('\n') + "</pre>";
+
+      // Display the total number of items
+      document.getElementById('itemCount').innerText = itemList.length;
+    }
+  </script>
+</body>
+
+</html>
